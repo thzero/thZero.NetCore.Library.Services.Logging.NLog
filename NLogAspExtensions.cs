@@ -44,7 +44,7 @@ namespace Microsoft.Extensions.Logging
             aspnetEnvironment = !string.IsNullOrEmpty(aspnetEnvironment?.Trim()) ? aspnetEnvironment.Trim() : "Production";
 
             var environmentSpecificLogFileName = System.IO.Path.Combine(hostingContext.HostingEnvironment.ContentRootPath, $"nlog.{aspnetEnvironment}.config");
-            hostingContext.HostingEnvironment.ConfigureNLog(environmentSpecificLogFileName);
+            LogManager.LoadConfiguration(environmentSpecificLogFileName);
 
             var options = NLogAspNetCoreOptions.Default;
             optionsFunc?.Invoke(options);
